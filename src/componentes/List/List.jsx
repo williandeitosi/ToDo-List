@@ -1,10 +1,28 @@
-
+import trash from "../../assets/caixa.png";
+import "./List.css";
 
 function List(props) {
-    return(<ul>
-      {props.items.map(items => <li>{items}</li>)}
-    </ul>)
-  
+
+
+
+  function deleteItem (item) {
+    console.log(item)
   }
 
-  export default List
+
+ 
+  return (
+    <ul>
+      {props.items.map(item => 
+        <li key={item.id}>{item.text}
+
+          <button onClick={() => {props.onItemDeleted(item)}}>
+            <img src={trash} alt="trash" width={20} />
+          </button>
+        </li>
+      )}
+    </ul>
+  );
+}
+
+export default List;

@@ -1,30 +1,36 @@
-import { useState } from 'react'
-import './App.css'
-import Form from './componentes/Form/form'
-import List from './componentes/List/List'
+import { useState } from "react";
+import "./App.css";
+import Form from "./componentes/Form/form";
+import List from "./componentes/List/List";
+import Item from "./Item/Item";
+
 
 function App() {
+  const [items, setItems] = useState([]);
 
-  const [items,setItems] = useState([])
+  function onAddItem(text) {
 
+    let it  = new Item(text)
 
- function onAddItem(item) {
-  setItems([...items, item])
+    setItems([...items, it]);
+  }
 
- }
+  function onItemDeleted (item) {
 
-  return ( 
-    <div className='container'>
+    let filteredItems = items.filter(it => it.id != item.id)
+    setItems(filteredItems)
+
+  }
+
+  return (
+    <div className="container">
       <h1>ToDo</h1>
-      
+
       <Form onAddItem={onAddItem}></Form>
 
-      <List items={items}></List>
-
+      <List onItemDeleted={onItemDeleted} items={items}></List>
     </div>
-  )
+  );
 }
 
-
-
-export default App
+export default App;

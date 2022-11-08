@@ -3,9 +3,23 @@ import "./App.css";
 import Form from "./componentes/Form/form";
 import List from "./componentes/List/List";
 import Item from "./componentes/Item/Item";
+import { useEffect } from "react";
+
+const SAVED_ITEMS = "savedItems"
 
 function App() {
   const [items, setItems] = useState([]);
+
+  useEffect (() => {
+    let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS))
+    if(savedItems) {
+      setItems(savedItems)
+    }
+  },[])
+
+  useEffect (() => {
+    localStorage.setItem(SAVED_ITEMS, JSON.stringify(items))
+  },[items])
 
   function onAddItem(text) {
     let it = new Item(text);

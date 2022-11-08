@@ -13,21 +13,21 @@ function DoneImg(props) {
 
 function ListItem(props) {
   return (
-    <li key={item.id}>
-      <Card className={item.done ? "done item" : "item"}>
-        {item.text}
+    <li>
+      <Card className={props.item.done ? "done item" : "item"}>
+        {props.item.text}
 
         <div>
           <button
             onClick={() => {
-              props.onDone(item);
+              props.onDone(props.item);
             }}
           >
-            <DoneImg done={item.done} />
+            <DoneImg done={props.item.done} />
           </button>
           <button
             onClick={() => {
-              props.onItemDeleted(item);
+              props.onItemDeleted(props.item);
             }}
           >
             <img src={trash} alt="trash" width={20} />
